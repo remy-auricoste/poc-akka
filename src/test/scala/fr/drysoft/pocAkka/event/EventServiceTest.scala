@@ -8,25 +8,20 @@ class EventServiceTest extends TestUnitaire {
   def getService = EventService()
 
   "EventService" should {
-    "isPrime" should {
-      "return true if the number is prime" in {
+    "complicatedFunction" should {
+      "return if number has same modulo from 2 and 3" in {
         val service = getService
-        Seq(1, 2, 3, 5, 7, 11, 13, 17, 19).foreach { prime =>
-          service.isPrime(prime) should be(true)
-        }
-        service.isPrime(4) should be(false)
-      }
-      "return true if the number is prime (high number)" in {
-        val service = getService
-        service.isPrime(100) should be(false)
-        service.isPrime(101) should be(true)
+        service.complicatedFunction(1) should be(true)
+        service.complicatedFunction(2) should be(false)
+        service.complicatedFunction(4) should be(false)
+        service.complicatedFunction(6) should be(true)
       }
     }
 
-    "filterPrimes" should {
-      "return only prime numbers" in {
+    "filter" should {
+      "return only numbers with same modulo for 2 and 3" in {
         val service = getService
-        Source(1 to 20).via(service.filterPrimes).toSeq should be(Seq(1, 2, 3, 5, 7, 11, 13, 17, 19))
+        Source(1 to 20).via(service.filterFlow).toSeq should be(Seq(1, 6, 7, 12, 13, 18, 19))
       }
     }
   }

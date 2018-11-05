@@ -2,17 +2,21 @@ package fr.drysoft.pocAkka
 
 import akka.NotUsed
 import akka.actor.ActorSystem
+import akka.http.scaladsl.testkit.ScalatestRouteTest
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{ Sink, Source }
-import org.scalatest.{ Matchers, WordSpec }
+import fr.drysoft.pocAkka.di.CustomInjector
 import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{ Matchers, WordSpec }
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, Future }
 
-trait TestUnitaire extends WordSpec with Matchers with MockitoSugar {
-  implicit val actorSystem: ActorSystem = ActorSystem("TestUnitaire")
-  implicit val materializer: ActorMaterializer = ActorMaterializer()
+trait TestUnitaire extends WordSpec with Matchers with MockitoSugar with ScalatestRouteTest {
+  implicit val actorSystem: ActorSystem = TestUnitaire.actorSystem
+  implicit override val materializer: ActorMaterializer = TestUnitaire.materializer
+
+  val injector = TestUnitaire.injector
 
   def await[T](future: Future[T]): T = Await.result(future, 5 seconds)
 
@@ -22,4 +26,8 @@ trait TestUnitaire extends WordSpec with Matchers with MockitoSugar {
 }
 
 object TestUnitaire {
+  val injector = CustomInjector()
+
+  implicit val actorSystem: ActorSystem = ActorSystem("TestUnitaire")
+  val materializer: ActorMaterializer = ActorMaterializer()
 }

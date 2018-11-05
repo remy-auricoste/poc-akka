@@ -16,16 +16,21 @@ resolvers ++= Seq(
   "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 )
 
-val akkaVersion = "2.5.17"
+val akkaStreamVersion = "2.5.17"
+val akkaHttpVersion = "10.1.5"
 
 libraryDependencies ++= Seq(
   "com.tzavellas" % "sse-guice" % "0.7.1"
-  , "com.typesafe.akka" %% "akka-stream" % akkaVersion
-  , "org.mockito" % "mockito-core" % "1.10.19" % "test"
-  , "org.scalatest" %% "scalatest" % "3.0.5" % "test"
-  , "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test
+  , "com.typesafe.akka" %% "akka-stream" % akkaStreamVersion
+  , "com.typesafe.akka" %% "akka-http" % akkaHttpVersion
+  , "org.mockito" % "mockito-core" % "1.10.19" % Test
+  , "org.scalatest" %% "scalatest" % "3.0.5" % Test
+  , "com.typesafe.akka" %% "akka-stream-testkit" % akkaStreamVersion % Test
+  , "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test
 )
 
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-v", "-a")
 
 lazy val root = (project in file("."))
+
+mainClass in (Compile, run) := Some("fr.drysoft.pocAkka.http.WebServer")

@@ -5,6 +5,5 @@ import akka.stream.scaladsl.Source
 import javax.inject.Inject
 
 case class EventRepository @Inject() () {
-  def findInRange(min: Int, max: Int): Source[Int, NotUsed] =
-    Source(min to max)
+  def findInRange(min: Int, max: Int): Source[Int, NotUsed] = Source(min to max)
 }
