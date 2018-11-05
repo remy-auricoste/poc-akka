@@ -1,0 +1,14 @@
+.idea
+*.iml
+node_modules
+build
+!build/update.sh
+dist
+commands.js
+data
+*.log
+.DS_Store
+target
+project/project
+project/target
+dist.zip

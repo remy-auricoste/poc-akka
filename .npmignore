@@ -1,0 +1,10 @@
+.idea
+*.iml
+node_modules
+.gitignore
+.npmignore
+build
+commands.js
+dist
+data
+*.log
