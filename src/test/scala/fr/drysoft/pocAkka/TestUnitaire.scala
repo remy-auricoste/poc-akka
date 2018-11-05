@@ -5,11 +5,12 @@ import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{ Sink, Source }
 import org.scalatest.{ Matchers, WordSpec }
+import org.scalatest.mockito.MockitoSugar
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, Future }
 
-trait TestUnitaire extends WordSpec with Matchers {
+trait TestUnitaire extends WordSpec with Matchers with MockitoSugar {
   implicit val actorSystem: ActorSystem = ActorSystem("TestUnitaire")
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 

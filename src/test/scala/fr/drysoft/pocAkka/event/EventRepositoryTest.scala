@@ -11,7 +11,7 @@ class EventRepositoryTest extends TestUnitaire {
   "EventRepository" should {
     "retrieve method" should {
       "return first integers" in {
-        service.findInRange(0, 3).toSeq === Seq(0, 1, 2, 3)
+        service.findInRange(0, 3).toSeq should be(Seq(0, 1, 2, 3))
       }
     }
   }
