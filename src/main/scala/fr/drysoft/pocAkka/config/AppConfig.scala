@@ -8,9 +8,7 @@ import fr.drysoft.pocAkka.generic.LoggerTrait
 import scala.concurrent.duration.FiniteDuration
 import scala.util.control.NonFatal
 
-case class AppConfig() extends LoggerTrait {
-  lazy val config: Config = ConfigFactory.load()
-
+case class AppConfig(config: Config = ConfigFactory.load()) extends LoggerTrait {
   private def getValue[T](getter: Config => String => T): String => T = key => {
     val value = try {
       getter(config)(key)

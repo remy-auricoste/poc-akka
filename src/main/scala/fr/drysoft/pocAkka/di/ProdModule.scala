@@ -6,7 +6,7 @@ import com.google.inject.{ Binder, Module }
 
 import scala.concurrent.ExecutionContext
 
-case class ProdModule() extends Module {
+class ProdModule extends Module {
   implicit val system = ActorSystem()
   val materializer: ActorMaterializer = ActorMaterializer()
   val executionContext: ExecutionContext = system.dispatcher

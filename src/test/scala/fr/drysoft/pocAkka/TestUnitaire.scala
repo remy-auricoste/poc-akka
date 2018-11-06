@@ -6,9 +6,10 @@ import akka.http.scaladsl.testkit.ScalatestRouteTest
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{ Sink, Source }
 import fr.drysoft.pocAkka.config.AppConfig
-import fr.drysoft.pocAkka.di.CustomInjector
+import fr.drysoft.pocAkka.di.{ CustomInjector, TestModule }
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{ Matchers, WordSpec }
+import org.slf4j.LoggerFactory
 
 import scala.concurrent.duration._
 import scala.concurrent.{ Await, Future }
@@ -28,7 +29,7 @@ trait TestUnitaire extends WordSpec with Matchers with MockitoSugar with Scalate
 }
 
 object TestUnitaire {
-  val injector = CustomInjector()
+  val injector = CustomInjector(module = new TestModule)
 
   implicit val actorSystem: ActorSystem = ActorSystem("TestUnitaire")
   val materializer: ActorMaterializer = ActorMaterializer()
