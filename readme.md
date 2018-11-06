@@ -7,7 +7,7 @@ Server Sent Event (SSE) is used.
 
 Note that not all browsers support this technology.
 See [this link](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#EventSource)
-for compatibility.
+for compatibility matrix.
 
 how to install
 =====

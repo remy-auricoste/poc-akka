@@ -23,6 +23,7 @@ libraryDependencies ++= Seq(
   "com.tzavellas" % "sse-guice" % "0.7.1"
   , "com.typesafe.akka" %% "akka-stream" % akkaStreamVersion
   , "com.typesafe.akka" %% "akka-http" % akkaHttpVersion
+  , "ch.qos.logback" % "logback-classic" % "1.0.13"
   , "org.mockito" % "mockito-core" % "1.10.19" % Test
   , "org.scalatest" %% "scalatest" % "3.0.5" % Test
   , "com.typesafe.akka" %% "akka-stream-testkit" % akkaStreamVersion % Test
