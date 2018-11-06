@@ -9,7 +9,8 @@ class EventControllerTest extends TestUnitaire {
 
   def getService = EventController(
     mock[EventRepository],
-    mock[EventService]
+    mock[EventService],
+    appConfig
   )
 
   "EventController" should {

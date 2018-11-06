@@ -34,4 +34,4 @@ testOptions += Tests.Argument(TestFrameworks.JUnit, "-v", "-a")
 
 lazy val root = (project in file("."))
 
-mainClass in (Compile, run) := Some("fr.drysoft.pocAkka.http.WebServer")
+mainClass in (Compile, run) := Some("fr.drysoft.pocAkka.Launcher")

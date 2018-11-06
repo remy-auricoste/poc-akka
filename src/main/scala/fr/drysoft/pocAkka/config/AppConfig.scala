@@ -1,8 +1,11 @@
 package fr.drysoft.pocAkka.config
 
-import com.typesafe.config.{Config, ConfigFactory}
+import java.util.concurrent.TimeUnit
+
+import com.typesafe.config.{ Config, ConfigFactory }
 import fr.drysoft.pocAkka.generic.LoggerTrait
 
+import scala.concurrent.duration.FiniteDuration
 import scala.util.control.NonFatal
 
 case class AppConfig() extends LoggerTrait {
@@ -20,7 +23,14 @@ case class AppConfig() extends LoggerTrait {
 
   private val getString: String => String = getValue[String](_.getString)
   private val getInt: String => Int = getValue[Int](_.getInt)
+  private val getDuration: String => FiniteDuration = getValue { config =>
+    key =>
+      FiniteDuration(config.getDuration(key).toMillis, TimeUnit.MILLISECONDS)
+  }
 
   // ensures that all config keys are valid
   val port = getInt("port")
+  val sseProducerBuffer = getInt("sse.producer-buffer")
+  val sseSinkBuffer = getInt("sse.sink-buffer")
+  val sseHeartbeatInterval = getDuration("sse.heartbeat-interval")
 }

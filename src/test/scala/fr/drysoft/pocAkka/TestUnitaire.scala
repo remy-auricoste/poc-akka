@@ -5,6 +5,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{ Sink, Source }
+import fr.drysoft.pocAkka.config.AppConfig
 import fr.drysoft.pocAkka.di.CustomInjector
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{ Matchers, WordSpec }
@@ -17,6 +18,7 @@ trait TestUnitaire extends WordSpec with Matchers with MockitoSugar with Scalate
   implicit override val materializer: ActorMaterializer = TestUnitaire.materializer
 
   val injector = TestUnitaire.injector
+  val appConfig = injector.getInstance[AppConfig]
 
   def await[T](future: Future[T]): T = Await.result(future, 5 seconds)
 
