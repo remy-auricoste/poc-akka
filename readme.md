@@ -9,10 +9,10 @@ Note that not all browsers support this technology.
 See [this link](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#EventSource)
 for compatibility matrix.
 
-how to install
-=====
-
-Install Javascript dependancies : `npm install`
+Requires :
+* Java
+* scala
+* sbt
 
 how to run
 ===
@@ -22,13 +22,11 @@ Launch server backend using :
 
 Server should be listening on port `9000`
 
-Launch frontend using :
-`npm start`
-
-Assets files should be served on port `8080`
-
 Testing
 ===
 
 Routes can be found in file `src/main/scala/fr/drysoft/pocAkka/http/Router.scala`
+This project is meant to be used with frontend project [poc-akka-react](https://github.com/remy-auricoste/poc-akka-react)
+
+Launch unit tests with `sbt test`
 
