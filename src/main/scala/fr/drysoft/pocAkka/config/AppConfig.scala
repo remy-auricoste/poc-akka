@@ -19,8 +19,9 @@ case class AppConfig(config: Config) extends LoggerTrait {
     value
   }
 
-  private val getString: String => String = getValue[String](_.getString)
-  private val getInt: String => Int = getValue[Int](_.getInt)
+  private val getString: String => String = getValue(_.getString)
+  private val getInt: String => Int = getValue(_.getInt)
+  private val getBoolean: String => Boolean = getValue(_.getBoolean)
   private val getDuration: String => FiniteDuration = getValue { config =>
     key =>
       FiniteDuration(config.getDuration(key).toMillis, TimeUnit.MILLISECONDS)
@@ -31,4 +32,5 @@ case class AppConfig(config: Config) extends LoggerTrait {
   val sseProducerBuffer = getInt("sse.producer-buffer")
   val sseSinkBuffer = getInt("sse.sink-buffer")
   val sseHeartbeatInterval = getDuration("sse.heartbeat-interval")
+  val simulateSlowServer = getBoolean("simulate-slow-server")
 }
