@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 case class Router @Inject() (
     eventController: EventController,
-    appConfig: AppConfig)(implicit materializer: ActorMaterializer) {
+    appConfig: AppConfig)(
+        implicit materializer: ActorMaterializer) {
 
   val route: Route =
     path("filter") {

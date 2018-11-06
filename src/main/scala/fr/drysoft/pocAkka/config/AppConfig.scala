@@ -2,13 +2,13 @@ package fr.drysoft.pocAkka.config
 
 import java.util.concurrent.TimeUnit
 
-import com.typesafe.config.{ Config, ConfigFactory }
+import com.typesafe.config.Config
 import fr.drysoft.pocAkka.generic.LoggerTrait
 
 import scala.concurrent.duration.FiniteDuration
 import scala.util.control.NonFatal
 
-case class AppConfig(config: Config = ConfigFactory.load()) extends LoggerTrait {
+case class AppConfig(config: Config) extends LoggerTrait {
   private def getValue[T](getter: Config => String => T): String => T = key => {
     val value = try {
       getter(config)(key)
