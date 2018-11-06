@@ -2,7 +2,7 @@ package fr.drysoft.pocAkka.di
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
-import com.google.inject.{Binder, Module}
+import com.google.inject.{ Binder, Module }
 import com.typesafe.config.ConfigFactory
 import fr.drysoft.pocAkka.config.AppConfig
 
@@ -14,9 +14,13 @@ class ProdModule extends Module {
   val executionContext: ExecutionContext = system.dispatcher
 
   override def configure(binder: Binder): Unit = {
+    commonConf(binder)
+    binder.bind(classOf[AppConfig]).toInstance(AppConfig(ConfigFactory.load()))
+  }
+
+  def commonConf(binder: Binder): Unit = {
     binder.bind(classOf[ActorSystem]).toInstance(system)
     binder.bind(classOf[ActorMaterializer]).toInstance(materializer)
     binder.bind(classOf[ExecutionContext]).toInstance(executionContext)
-    binder.bind(classOf[AppConfig]).toInstance(AppConfig(ConfigFactory.load()))
   }
 }

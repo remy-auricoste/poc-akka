@@ -5,7 +5,7 @@ import fr.drysoft.pocAkka.config.AppConfig
 
 class TestModule extends ProdModule {
   override def configure(binder: Binder): Unit = {
-    super.configure(binder)
+    commonConf(binder)
     binder.bind(classOf[AppConfig]).toInstance(AppConfig(ConfigFactory.load("test")))
   }
 }
